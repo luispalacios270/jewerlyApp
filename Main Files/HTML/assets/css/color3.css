@@ -1,0 +1,135 @@
+/*
+========================================
+hover css
+========================================
+*/
+
+ul.nav.navbar-nav.sm li a:hover,
+.headding-box span i,
+.star-box-section p i,
+.Products-in-stock,
+a.btn-read,
+ul.blog-tect-icons a:hover,
+ul.footer-box2 li a:hover,
+.footer-bottom-bar .footer-text,
+.blog-text-section h4 a:hover,
+.Profile.setting h5 a:hover,
+.Profile.setting p,
+.post-section h4 a:hover,
+.Categories ul li a:hover,
+.market-info a.showlogin:hover,
+.market-info a.showcoupon:hover,
+h4.product-title a:hover,
+.comment-title,
+.page-tool a.viewGrid:hover,
+.page-tool a.viewList:hover,
+.figure-section-hover h4 a:hover,
+h3.product-detail-title a:hover,
+span.coming-text,
+.Categories-blog .itg-button:hover,
+.banner-text-box .itg-button:hover,
+.cart-price-box h5 a:hover,
+.cancle-box a:hover,
+#loading-center-absolute h3,
+span.footer-text a:hover,
+a.paly-icon i:hover,
+.login-section li a:hover,
+.loading >h3,
+.loction-icon-box i,
+li.heading-wa.box-z.activ,
+.language-box2.top a:hover {
+    color: #a51f1f;
+}
+/*
+========================================
+background css
+========================================
+*/
+
+.top-bar-section1,
+a.mini-cart-icon,
+.itg-button:hover,
+.owl-theme .owl-nav [class*='owl-']:hover,
+.itg-hover-style2:hover .figure-section-hover,
+.products-boxes a,
+.search-box-1 button,
+.pagination-box span:hover,
+div.tab button.active,
+div.tab button:hover,
+.tag-list a:hover,
+.order-bosx,
+.checbox-section input[type="checkbox"]:checked + label:before,
+.social-sharing-box .icons-section li a:hover,
+.ui-state-active,
+.faq-section.bar .ui-accordion .ui-accordion-header:hover,
+.rating-section .itg-button,
+.price-filter-box .ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active,
+.navbar-default .navbar-toggle:focus,
+.navbar-default .navbar-toggle:hover,
+button.navbar-toggle,
+.loading > div > div,
+.contact-loction-box:hover,
+figure.itg-hover-style1:after,
+.special-style-semidark:before,
+#style-switcher h2 a,
+.boxs-404 img,
+.Featured-box a.itg-button {
+    background-color: #a51f1f;
+}
+/*
+========================================
+border css
+========================================
+*/
+
+.icons-section input[type=search],
+ul.nav.navbar-nav.sm li a:hover,
+.search_terms:focus,
+.setting.box input:focus,
+.mini-cart-product-box {
+    border-bottom: 1px solid #a51f1f;
+}
+.headding-icons li span,
+.partner-figures:hover {
+    border: 1px solid #a51f1f;
+}
+figure.itg-hover-section:before {
+    background-color: #a51f1f;
+}
+.headding-icons ul:after {
+    background: #a51f1f;
+    /* Old browsers */
+    
+    background: -moz-linear-gradient(left, #a51f1f 0%, #ffffff 100%);
+    /* FF3.6-15 */
+    
+    background: -webkit-linear-gradient(left, #a51f1f 0%, #ffffff 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    
+    background: linear-gradient(to right, #a51f1f 0%, #ffffff 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#a51f1f', endColorstr='#ffffff', GradientType=1);
+    /* IE6-9 */
+}
+.headding-icons ul:before {
+    background: #ffffff;
+    /* Old browsers */
+    
+    background: -moz-linear-gradient(left, #ffffff 0%, #a51f1f 100%);
+    /* FF3.6-15 */
+    
+    background: -webkit-linear-gradient(left, #ffffff 0%, #a51f1f 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    
+    background: linear-gradient(to right, #ffffff 0%, #a51f1f 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#a51f1f', GradientType=1);
+    /* IE6-9 */
+}
