@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="es">
+
+<head>
+	<!-- Material Dashboard CSS -->
+	<link href="dashboard/assets/css/material-dashboard.css" rel="stylesheet" />
+	<link href="dashboard/assets/css/bootstrap.min.css" rel="stylesheet" />
+	<link href="dashboard/assets/css/demo.min.css" rel="stylesheet" />
+
+	<!-- Fonts and icons -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+	<link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+	<!-- Slick -->
+	<!-- <link rel="stylesheet" href="vendors/slick/slick.css">
+	<link rel="stylesheet" href="vendors/slick/slick-theme.css"> -->
+
+	<!-- Custom CSS -->
+	<link href="dashboard/dashboardNew.css" rel="stylesheet" />
+	<!-- <link href="dashboard/dashboardNew.css" rel="stylesheet" /> -->
+
+</head>
+
+<body>
+	<div ng-if="infoAlert" class="alert alert-info fade-animation">
+		<div class="container-fluid">
+			<div class="alert-icon">
+				<i class="material-icons">info_outline</i>
+			</div>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true"><i class="material-icons">clear</i></span>
+			</button>
+			<b>Info alert:</b> You've got some friends nearby, stop looking at your phone and find them...
+		</div>
+	</div>
+
+	<div class="wrapper">
+		<div class="sidebar" data-color="purple" data-image="dashboard/assets/img/sidebar-1.jpg">
+			<div class="logo">
+				<a href="http://www.creative-tim.com" class="simple-text">
+					Gaura
+				</a>
+			</div>
+			<div class="sidebar-wrapper">
+				<ul class="nav">
+					<li ng-repeat="option in options">
+						<a href="" ng-click="changeOption($index)" ng-class="{'active':selectedOption===$index}">
+	                        <i class="material-icons">dashboard</i>
+	                        <p>{{option.name}}</p>
+						</a>
+						<ul ng-if="selectedOption===$index" class="nav sub-nav fade-animation">
+							<li>
+								<a ng-click="" href="">Crear Nuevo</a>
+							</li>
+							<li>
+								<a href="">Editar</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Profile</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="material-icons">dashboard</i>
+									<p class="hidden-lg hidden-md">Dashboard</p>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="material-icons">notifications</i>
+									<span class="notification">5</span>
+									<p class="hidden-lg hidden-md">Notifications</p>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Mike John responded to your email</a></li>
+									<li><a href="#">You have 5 new tasks</a></li>
+									<li><a href="#">You're now friend with Andrew</a></li>
+									<li><a href="#">Another Notification</a></li>
+									<li><a href="#">Another One</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+	 							   <i class="material-icons">person</i>
+	 							   <p class="hidden-lg hidden-md">Profile</p>
+	 						   </a>
+							</li>
+						</ul>
+
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group  is-empty">
+								<input type="text" class="form-control" placeholder="Search">
+								<span class="material-input"></span>
+							</div>
+							<button type="submit" class="btn btn-white btn-round btn-just-icon">
+								<i class="material-icons">search</i><div class="ripple-container"></div>
+							</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-md-12">
+							<div class="card" ng-show="selectedOption!=-1">
+								<div class="card-header" data-background-color="purple">
+									<h4 class="title">Crear/Editar {{options[selectedOption].name}}</h4>
+								</div>
+								<div class="card-content">
+									<form ng-show="selectedOption===1" id="categoryForm" ng-submit="addNewDocument(category,categories,selectedOption)">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label">Nombre</label>
+													<input ng-model="category.name" type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Descripción</label>
+													<div class="form-group label-floating">
+														<label class="control-label"> Ingrese la descripción del elemento</label>
+														<textarea ng-model="category.description" class="form-control" rows="2"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+
+
+										<label for="file-uploader" class="file-uploader-btn">
+											<input type="file" id="file-uploader" class="ng-hide"  onchange="angular.element(this).scope().filesChanged(this)" />											
+											Subir Archivo 
+										</label>
+										<span>{{files[0].name}}</span>
+
+										<button type="submit" ng-disabled="!category.name" class="btn btn-primary pull-right">Guardar</button>
+										<div class="clearfix"></div>
+									</form>
+
+									<form ng-show="selectedOption===0" id="jewerlyForm" ng-submit="addNewDocument(jewerly,jewerlies,selectedOption)">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label">Nombre</label>
+													<input type="text" ng-model="jewerly.name" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label">Precio</label>
+													<input type="text" ng-model="jewerly.price" class="form-control">
+												</div>
+											</div>
+										</div>
+										<div class="row">
+											<div class="checkbox">
+												<label>  
+													<input type="checkbox" ng-model="jewerly.inStock" name="optionsCheckboxes" checked>
+													Checked
+												 </label>
+											</div>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>Descripción</label>
+													<div class="form-group label-floating">
+														<label class="control-label"> Ingrese la descripción del elemento</label>
+														<textarea class="form-control" ng-model="jewerly.description" rows="2"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label">Categoría</label>
+													<select ng-model="jewerly.category" name="" id="">
+														<option  ng-repeat="category in categories" ng-value="category.$id">{{category.name}}</option>														
+													</select>
+												</div>
+											</div>
+										</div>
+
+										<label for="file-uploader-jewerly" class="file-uploader-btn">
+											<input type="file" id="file-uploader-jewerly" class="ng-hide"  onchange="angular.element(this).scope().filesChanged(this)" />											
+											Subir Archivo 
+										</label>
+										<span>{{files[0].name}}</span>
+										<button type="submit" class="btn btn-primary pull-right">Guardar</button>
+										<div class="clearfix"></div>
+									</form>
+
+									<form ng-show="selectedOption===2" id="sliderForm" ng-submit="addNewDocument(slide,sliders,selectedOption)">
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group label-floating">
+													<label class="control-label">Título</label>
+													<input type="text" class="form-control">
+												</div>
+											</div>
+
+										</div>
+
+										<div class="row">
+											<div class="col-md-12">
+												<div class="form-group">
+													<label>información</label>
+													<div class="form-group label-floating">
+														<label class="control-label"> <!-- Ingrese la descripción del elemento --></label>
+														<textarea class="form-control" rows="2"></textarea>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<label for="file-uploader-slider" class="file-uploader-btn">
+											<input type="file" id="file-uploader-slider" class="ng-hide"  onchange="angular.element(this).scope().filesChanged(this)" />											
+											Subir Archivo 
+										</label>
+										<span>{{files[0].name}}</span>
+										<button type="submit" class="btn btn-primary pull-right">Guardar</button>
+										<div class="clearfix"></div>
+									</form>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						<ul>
+							<li>
+								<a href="#">
+	                                Home
+	                            </a>
+							</li>
+							<li>
+								<a href="#">
+	                                Company
+	                            </a>
+							</li>
+							<li>
+								<a href="#">
+	                                Portfolio
+	                            </a>
+							</li>
+							<li>
+								<a href="#">
+	                               Blog
+	                            </a>
+							</li>
+						</ul>
+					</nav>
+				</div>
+			</footer>
+		</div>
+	</div>
+</body>
+<script src="dashboard/assets/js/material.min.js" type="text/javascript"></script>
+
+<!--  Charts Plugin -->
+<script src="dashboard/assets/js/chartist.min.js"></script>
+
+<!--  Notifications Plugin    -->
+<script src="dashboard/assets/js/bootstrap-notify.js"></script>
+
+<!--  Google Maps Plugin    -->
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+<!-- Material Dashboard javascript methods -->
+<script src="dashboard/assets/js/material-dashboard.js"></script>
+
+</html>

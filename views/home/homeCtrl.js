@@ -1,12 +1,5 @@
-// var app = angular.module('jewerlyApp');
-app.controller('homeCtrl', ['$scope', function ($scope) {
-
-
-
-
-
-
-    /*  angular.element(document).ready(function () {
-         $scope.animations();
-     }) */
+app.controller('homeCtrl', ['$scope', 'firebaseService', function ($scope, firebaseService) {
+    $scope.categories = firebaseService.getNodeArray("categories");
+    $scope.jewerliesTop = firebaseService.getNodeArray("jewerly");
+    $scope.jewerlyFeatured = firebaseService.getNodeObject("jewerlyFeatured");
 }]);

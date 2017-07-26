@@ -1,23 +1,39 @@
-var app = angular.module('jewerlyApp', ['ngRoute']);
+var app = angular.module('jewerlyApp', ['ngRoute', 'firebase', 'ngAnimate']);
 app.directive('headerMenu', function () {
     return {
-        templateUrl: 'views/header/header.html',
-        conntroller: 'headerCtrl'
+        templateUrl: 'views/header/header.html'/* ,
+        conntroller: 'headerCtrl' */
     };
 });
-/* app.directive('elemReady', function ($parse) {
+
+app.directive('fileInput', ['$parse', function ($parse) {
     return {
         restrict: 'A',
-        link: function ($scope, elem, attrs) {
-            elem.ready(function () {
-                $scope.$apply(function () {
-                    var func = $parse(attrs.elemReady);
-                    func($scope);
-                })
-            })
+        link: function (scope, element, attributes) {
+            element.bind('change', function () {
+                $parse(attributes.fileInput)
+                    .assign(scope, element[0].files)
+                scope.$apply()
+            });
+        }
+    };
+}]);
+
+app.directive('fileUpload', function () {
+    return {
+        restrict: "E",
+        transclude: true,
+        scope: {
+            onChange: "="
+        },
+        template: '<input type="file" name="file" /><label><ng-transclude></ng-transclude></label>',
+        link: function (scope, element, attrs) {
+            element.bind("change", function () {
+                scope.onChange(element.children()[0].files);
+            });
         }
     }
-}) */
+});
 app.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
         // $locationProvider.hashPrefix('');
@@ -26,10 +42,10 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/home/home.html',
                 controller: 'homeCtrl'
             })
-            /* .when('/header', {
-                template: '<header-menu></header-menu>',
-                controller: 'headerCtrl'
-            }) */
+            .when('/dashboard', {
+                templateUrl: 'views/dashboard/dashboard.html',
+                controller: 'dashboardCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -37,22 +53,23 @@ app.config(['$routeProvider', '$locationProvider',
     }
 ]);
 
+app.controller('UploadCtrl', function (firebaseService) {
+    var ctrl = this;
+
+    var storageRef = firebase.storage().ref("userProfiles/physicsmarie");
+    var storage = $firebaseStorage(storageRef);
+    ctrl.fileToUpload = null;
+    ctrl.onChange = function onChange(fileList) {
+        firebaseService.uploadFile(nodeName, file);
+    };
+});
+
 app.controller("mainCtrl", function ($scope) {
     $scope.$on('$viewContentLoaded', function () {
-        
+
         $scope.animations();
     });
     $scope.animations = function () {
-        
-        
-        /*
-         *****************************************************
-         *	CUSTOM JS DOCUMENT                              *
-         *	Single window load event                        *
-         *   "use strict" mode on                           *
-         *****************************************************
-         */
-
 
         "use strict";
 
@@ -228,7 +245,7 @@ app.controller("mainCtrl", function ($scope) {
         // Owl Carousel functions
         //======================================== 	
 
-        function owlCarouselInit() {           
+        function owlCarouselInit() {
 
             "use strict";
 
