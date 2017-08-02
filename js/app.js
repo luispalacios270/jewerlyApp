@@ -1,4 +1,4 @@
-var app = angular.module('jewerlyApp', ['ngRoute', 'firebase', 'ngAnimate']);
+var app = angular.module('jewerlyApp', ['ngRoute', 'firebase', 'ngAnimate'/* , 'slickCarousel' */]);
 app.directive('headerMenu', function () {
     return {
         templateUrl: 'views/header/header.html'/* ,
@@ -6,7 +6,18 @@ app.directive('headerMenu', function () {
     };
 });
 
-app.directive('fileInput', ['$parse', function ($parse) {
+app.directive('onErrorSrc', function () {
+    return {
+        link: function (scope, element, attrs) {
+            element.bind('error', function () {
+                if (attrs.src != attrs.onErrorSrc) {
+                    attrs.$set('src', attrs.onErrorSrc);
+                }
+            });
+        }
+    }
+});
+/* app.directive('fileInput', ['$parse', function ($parse) {
     return {
         restrict: 'A',
         link: function (scope, element, attributes) {
@@ -33,7 +44,7 @@ app.directive('fileUpload', function () {
             });
         }
     }
-});
+}); */
 app.config(['$routeProvider', '$locationProvider',
     function ($routeProvider, $locationProvider) {
         // $locationProvider.hashPrefix('');
@@ -46,6 +57,10 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/dashboard/dashboard.html',
                 controller: 'dashboardCtrl'
             })
+            .when('/collection', {
+                templateUrl: 'views/collection/collection.html',
+                controller: 'collectionCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -53,23 +68,20 @@ app.config(['$routeProvider', '$locationProvider',
     }
 ]);
 
-app.controller('UploadCtrl', function (firebaseService) {
-    var ctrl = this;
-
-    var storageRef = firebase.storage().ref("userProfiles/physicsmarie");
-    var storage = $firebaseStorage(storageRef);
-    ctrl.fileToUpload = null;
-    ctrl.onChange = function onChange(fileList) {
-        firebaseService.uploadFile(nodeName, file);
-    };
-});
-
-app.controller("mainCtrl", function ($scope) {
-    $scope.$on('$viewContentLoaded', function () {
-
-        $scope.animations();
+app.controller("mainCtrl", function ($scope, $location, $rootScope) {
+    $rootScope.$on("$locationChangeSuccess", function () {
+        if ($location.url() === '/dashboard')
+            $scope.hideHeader = true;
+        else
+            $scope.hideHeader = false;
     });
-    $scope.animations = function () {
+    $scope.$on('$viewContentLoaded', function () {
+        animations();
+    });
+    angular.element(document).ready(function () {
+        animations();
+    });
+    function animations() {
 
         "use strict";
 
@@ -456,5 +468,5 @@ app.controller("mainCtrl", function ($scope) {
         }
 
 
-    }
+    };
 });

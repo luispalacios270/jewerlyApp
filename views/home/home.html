@@ -6,11 +6,16 @@
 <link href="style.css" rel="stylesheet">
 <link href="assets/plugin/switcher/css/switcher.css" rel="stylesheet">
 <link href="assets/css/color.css" rel="stylesheet" id="colors">
+<!-- Latest compiled and minified CSS -->
+
+<!-- Slick -->
+<!-- <link rel="stylesheet" href="vendors/slick/slick.css">
+<link rel="stylesheet" href="vendors/slick/slick-theme.css"> -->
 
 
 
-<header-menu>
-</header-menu>
+<!-- <header-menu>
+</header-menu> -->
 <!--//==top bar End==//-->
 
 
@@ -140,9 +145,10 @@
                         <p> -->
                 </div>
                 <div class="Categories-blog pad-top40">
-                    <div ng-repeat="category in categories" ng-class="{'responsive-top':$index>0}" class="col-md-3 col-sm-6 col-xs-12">
+                    <div ng-repeat="category in categories" ng-init="getDownloadURL($parent.options[1].folder + '/' + category.$id, category)"
+                        ng-class="{'responsive-top':$index>0}" class="col-md-3 col-sm-6 col-xs-12 pad-top30">
                         <figure class="itg-hover-style1">
-                            <img src="http://ais.rtl.de/galerie/1926925/dsds-2014-so-wurde-aneta-sablik-superstar-2014.jpg" alt="">
+                            <img ng-src="{{category.link}}" class="img img-responsive img-box" on-error-src="assets/img/products/Products1.png">
                             <figcaption class="pad-bottom10 figure-boxx cotegories">
                                 <h4 class="theme-headdings text-center">{{category.name}}</h4>
                                 <p>Mirar la colección</p>
@@ -211,13 +217,13 @@
                                             <p>
                                                 <label for="billing_state">Color</label>
                                                 <select class="billing_state2" id="billing_state" name="billing_state">
-                                                            <option value="">Seleccionar Color</option>
-                                                            <option value="AP">Red</option>
-                                                            <option value="AR">Blue</option>
-                                                            <option value="AS">Green</option>
-                                                            <option value="BR">Yellow</option>
-                                                            <option value="CT">Black</option>
-                                                        </select>
+                                                    <option value="">Seleccionar Color</option>
+                                                    <option value="AP">Red</option>
+                                                    <option value="AR">Blue</option>
+                                                    <option value="AS">Green</option>
+                                                    <option value="BR">Yellow</option>
+                                                    <option value="CT">Black</option>
+                                                </select>
                                             </p>
                                         </div>
                                     </div>
@@ -226,13 +232,13 @@
                                             <p>
                                                 <label for="billing_state">Talla</label>
                                                 <select class="billing_state" id="billing_state1" name="billing_state">
-                                                            <option value="">Seleccionar Talla</option>
-                                                            <option value="AP">S</option>
-                                                            <option value="AR">L</option>
-                                                            <option value="AS">M</option>
-                                                            <option value="BR">XL</option>
-                                                            <option value="CT">XXL</option>
-                                                        </select>
+                                                    <option value="">Seleccionar Talla</option>
+                                                    <option value="AP">S</option>
+                                                    <option value="AR">L</option>
+                                                    <option value="AS">M</option>
+                                                    <option value="BR">XL</option>
+                                                    <option value="CT">XXL</option>
+                                                </select>
                                             </p>
                                         </div>
                                     </div>
@@ -299,9 +305,10 @@
                 </div>
 
                 <div class="products mar-top40">
-                    <div class="col-md-3 col-sm-6 col-xs-12" ng-class="{'responsive-top':$index>0}" ng-repeat="jewerly in jewerliesTop | limitTo:20">
-                        <figure class="itg-hover-style2">
-                            <img src="fotos_Gau/collar1.jpg" class="img-product" alt="">
+                    <div class="col-md-3 col-sm-6 col-xs-12 pad-top30" ng-repeat="jewerly in jewerliesTop | limitTo:20">
+                        <figure class="itg-hover-style2" ng-init="getDownloadURL($parent.options[2].folder + '/' + jewerly.$id, jewerly)">
+                            <!-- <img src="fotos_Gau/collar1.jpg" class="img-product" alt=""> -->
+                            <img ng-src="{{jewerly.link}}" class="img img-responsive img-box" on-error-src="assets/img/products/Products1.png">
                             <div class="products-boxes">
                                 <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
                             </div>
@@ -470,20 +477,20 @@
 <!--//===Featured-Product-sectoin Start==//-->
 <section>
     <div class="Featured-Product-sectoin grey-bgs pad-top-bottom80">
-        <div class="container">
+        <div class="container" >
             <div class="row">
                 <div class="col-md-12 col-sm-12 col-xs-12">
                     <div class="row">
-                        <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="col-md-6 col-sm-12 col-xs-12" ng-init="getDownloadURL(options[0].folder + '/' + jewerlyFeatured.id, jewerlyFeatured)">
                             <figure>
-                                <img class="img-product" style="object-fit: contain" src="fotos_Gau/Copia de IMG_3115.jpg" alt="">
+                                <!-- <img class="img-product" src="fotos_Gau/Copia de IMG_3115.jpg" alt=""> -->
+                                <img ng-src="{{jewerlyFeatured.link}}" class="img img-responsive img-product" on-error-src="assets/img/products/Products1.png">
                             </figure>
                         </div>
                         <div class="col-md-6 col-sm-12 col-xs-12 Featured-box Categorie-top responsive-top">
                             <h3 class="theme-headdings">{{jewerlyFeatured.name}}</h3>
                             <p class="Featured-text">{{jewerlyFeatured.description}}
-                            </p>
-                            <!-- <h4 class="theme-headdings pad-top10">Jojería de Diseñador</h4> -->
+                            </p>                            
                             <div class="head-medial-text pad-top5">
                                 <p> Disponibilidad:
                                     <span ng-if="jewerlyFeatured.inStock" class="Products-in-stock">En Inventario</span>
@@ -530,15 +537,15 @@
                         <p> -->
                 </div>
                 <div id="product-items-slider" class="owl-carousel owl-theme">
-                    <div class="item">
+                    <div class="item" ng-repeat="jewerlyTop in jewerliesTop">
                         <div class="col-md-12 col-sm-12 col-xs-12">
-                            <figure class="itg-hover-style2">
-                                <img src="fotos_Gau/IMG_5176.jpg" class="img-product" alt="">
+                            <figure class="itg-hover-style2" ng-init="getDownloadURL($parent.options[0].folder + '/' + jewerlyTop.$id, jewerlyTop)">
+                                <img ng-src="{{jewerlyTop.link}}" class="img img-responsive" on-error-src="assets/img/products/Products1.png" />
                                 <div class="products-boxes">
                                     <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
                                 </div>
                                 <figcaption class=" figure-boxx figure-section-hover">
-                                    <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">Jojería de Diseñador</a></h4>
+                                    <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">{{jewerlyTop.name}}</a></h4>
                                     <div class="star-box-section text-left">
                                         <p><i class="fa fa-star"></i>
                                             <i class="fa fa-star"></i>
@@ -547,95 +554,7 @@
                                             <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
                                         </p>
                                     </div>
-                                    <p>100.00$</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <figure class="itg-hover-style2">
-                                <img src="fotos_Gau/IMG_5177.jpg" class="img-product" alt="">
-                                <div class="products-boxes">
-                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
-                                </div>
-                                <figcaption class=" figure-boxx figure-section-hover">
-                                    <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">Jojería de Diseñador</a></h4>
-                                    <div class="star-box-section text-left">
-                                        <p><i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
-                                        </p>
-                                    </div>
-                                    <p>100.00$</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <figure class="itg-hover-style2">
-                                <img src="fotos_Gau/IMG_5178.jpg" class="img-product" alt="">
-                                <div class="products-boxes">
-                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
-                                </div>
-                                <figcaption class=" figure-boxx figure-section-hover">
-                                    <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">Jojería de Diseñador</a></h4>
-                                    <div class="star-box-section text-left">
-                                        <p><i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
-                                        </p>
-                                    </div>
-                                    <p>100.00$</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <figure class="itg-hover-style2">
-                                <img src="fotos_Gau/IMG_5150.png" class="img-product" alt="">
-                                <div class="products-boxes">
-                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
-                                </div>
-                                <figcaption class=" figure-boxx figure-section-hover">
-                                    <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">Jojería de Diseñador</a></h4>
-                                    <div class="star-box-section text-left">
-                                        <p><i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
-                                        </p>
-                                    </div>
-                                    <p>100.00$</p>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <div class="col-md-12 col-sm-12 col-xs-12">
-                            <figure class="itg-hover-style2">
-                                <img src="fotos_Gau/IMG_5175.jpg" class="img-product" alt="">
-                                <div class="products-boxes">
-                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
-                                </div>
-                                <figcaption class=" figure-boxx figure-section-hover">
-                                    <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">Jojería de Diseñador</a></h4>
-                                    <div class="star-box-section text-left">
-                                        <p><i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                            <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
-                                        </p>
-                                    </div>
-                                    <p>100.00$</p>
+                                    <p>{{jewerlyTop.price | currency}}$</p>
                                 </figcaption>
                             </figure>
                         </div>
@@ -654,9 +573,44 @@
         </div>
         <div class="container pad-top-bottom130">
             <div class="banner-text-box">
-                <h1 class="text-center">Oferta Especial</h1>
-                <p>Flat 15% de descuento en cadenas por hoy</p>
-                <a href="" class="itg-button mar-top20">Comprar</a>
+
+                <!-- Consejos útiles para mantener las joyas
+ 
+
+ 
+
+ 
+  -->
+                <h1 class="text-center">Consejos útiles para mantener las joyas</h1>
+                <ul>
+                    <li>
+                        <p class="info-banner"> * Para las perlas, plata, acero y Golfilled</p>
+                    </li>
+                    <li>
+                        <p class="info-banner"> * No las olvide en lugares oscuros y húmedos, recuerde que son piedras orgánicas, el mal trato hace
+                            que pierda el brillo natural, le salga manchas que se convierten en hongos, retire la joya antes
+                            de lavarse las manos y/o aplicarse crema. Si va aplicarse perfume hágalo 10 minutos antes de
+                            colocarse la perla.</p>
+                    </li>
+                    <li>
+                        <p class="info-banner"> * Al lavarse las manos, aplicar perfume o ponerse crema es mejor quitarse las joyas. Las partículas
+                            de estos cosméticos (que no se eliminan con un aclarado rápido) pueden incrustarse en las partes
+                            huecas y formar una mezcla corrosiva que, a largo plazo, puede dar lugar a un desgaste prematuro
+                            del metal.</p>
+                    </li>
+                    <li>
+                        <p class="info-banner"> * Tenga cuidado al utilizar líquidos que suelen utilizarse para limpiar heridas, estos usualmente
+                            tienen mercurio y eso daña la plata, el acero y el Oro GoldFilled incluso las perlas y las piedra
+                            semipreciosas.
+                        </p>
+                    </li>
+                    <li>
+                        <p class="info-banner"> * Para mantener la plata guárdela en un lugar fresco, seco que sea para evitar la oxidación.</p>
+                    </li>
+
+                </ul>
+
+                <!-- <a href="" class="itg-button mar-top20">Comprar</a> -->
             </div>
         </div>
     </div>

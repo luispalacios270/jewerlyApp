@@ -9,9 +9,15 @@ app.service('firebaseService', function ($firebaseObject, $firebaseArray, $fireb
             let ref = firebase.database().ref().child(nodeName);
             return $firebaseObject(ref);
         },
-        getDownload: function (nodeName) {
+        getDownload: function (nodeName, document) {
             var storageRef = firebase.storage().ref(nodeName);
             var storage = $firebaseStorage(storageRef);
+            storage.$getDownloadURL().then(function (url) {
+                document.link = url;
+                return url;
+            }).catch(function (err) {
+                document.link = "Error";
+            });
         },
         uploadFile: function (nodeName, file) {
             var storageRef = firebase.storage().ref(nodeName);

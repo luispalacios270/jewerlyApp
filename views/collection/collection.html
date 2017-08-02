@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+        **********************************************************************************************************
+        Copyright (c) 2017 It-Geeks
+        ********************************************************************************************************** 
+        -->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--[if IE]>
+        <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+        <![endif]-->
+    <meta name="keywords" content="HTML5 Template" />
+    <meta name="description" content="Jewellery Shop - Multipurpose Ecommerce Responsive Html5 template" />
+    <meta name="author" content="itgeeksin.com" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Jewellery Shop - Multipurpose Ecommerce Responsive Html5 template</title>
+    <!-- Bootstrap -->
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="assets/img/favicon.ico" type="image/x-icon">
+    <!-- Master Css -->
+    <link href="main.css" rel="stylesheet">
+    <link href="assets/plugin/switcher/css/switcher.css" rel="stylesheet">
+    <link href="assets/css/color.css" rel="stylesheet" id="colors">
+    <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+    <!--//==top bar End==//-->
+    <div class="breadcrumb-section-box">
+        <div class="special-style special-style-full special-style-semidark col-md-12 col-md-offset-0 pull-right">
+            <div class="bg-image" style="background-image:url('assets/img/all/breadcrumb-img.png');"></div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 pad-top100 pad-bottom100 heading-box">
+                    <h3 class="heading-breadcrumb box-z text-center">Nuestra Colección</h3>
+                    <div class="clear"></div>
+                    <div class="headding-icons">
+                        <ul>
+                            <li><span class="mar-top15"><i class="fa fa-diamond" aria-hidden="true"></i></span></li>
+                            <li><span class="style mar-top15"><i class="fa fa-diamond" aria-hidden="true"></i></span></li>
+                            <li><span class="mar-top15"><i class="fa fa-diamond" aria-hidden="true"></i></span></li>
+                        </ul>
+                    </div>
+                    <div class="breadcrumb-box">
+                        <ul class="breadcrumb">
+                            <li>
+                                <a class="sab-heading-breadcrumb box-z" href="/#">Inicio</a>
+                            </li>
+                            <li class="heading-wa box-z activ">Colección</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="pad-bottom80 pad-top80 blog-griad">
+        <div class="container">
+            <div class="row">
+                <!--//==blog section Start==//-->
+                <section>
+                    <div class="products-section">
+                        <div class="container">
+                            <div class="row">
+                                <div id="collectiongrid">
+                                    <div class="col-md-9 col-sm-8 col-xs-12 pull-right">
+                                        <div class="row">
+                                            <div class="page-tool">
+                                                <div class="col-md-8 col-sm-8 col-xs-12">
+                                                    <div class="page-tool-box padT5">
+                                                        <div class="row">
+                                                            <div class="col-md-6 col-sm-12 col-xs-12 marB10 padT5">
+                                                                <a class="viewGrid"><i class="fa fa-th" aria-hidden="true"></i></a>
+                                                                <a class="viewList"><i class="fa fa-th-list" aria-hidden="true"></i></a>
+                                                                <span>Artículo 1 a 15 de 15 articulos</span>
+                                                            </div>
+                                                            <div class="col-md-5 col-sm-8 col-xs-12 billing-box select sow-page-secton responsive-top1 box ">
+                                                                <span>Ver </span>
+                                                                <select ng-model="itemsPerPage">
+                                                                    <option ng-value="1">1</option>
+                                                                    <option ng-value="2">2</option>
+                                                                    <option ng-value="3">3</option>
+                                                                    <option ng-value="4" >4</option>
+                                                                    <option ng-value="5" >5</option>
+                                                                    <option ng-value="6" >6</option>
+                                                                    <option ng-value="7">7</option>
+                                                                    <option ng-value="8">8</option>
+                                                                    <option ng-value="9">9</option>
+                                                                    <option ng-value="10">10</option>
+                                                                </select>
+                                                                <span>por página</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-4 col-sm-4 col-xs-12 marB10 padT5 responsive-top1 tool-bar-boxs">
+                                                    <div class="page-tool-box page-tool-box-right billing-box select sow-page-secton drop-box-sec boxx">
+                                                        <span>Sort by </span>
+                                                        <select ng-model="orderOption">
+                                                                <option value="">Ninguno</option>
+                                                                <option value="name">Nombre</option>
+                                                                <option value="price">Precio</option>
+                                                            </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div id="productsgriads" class="products mar-top30">
+                                                <div class="col-md-4 col-sm-6 col-xs-12 pad-top30" ng-repeat="jewerly in jewerlies|filter:q|orderBy:orderOption|limitTo:itemsPerPage:(page-1)*itemsPerPage">
+                                                    <figure class="itg-hover-style2" ng-init="getDownloadURL($parent.options[0].folder + '/' + jewerly.$id, jewerly)">
+                                                        <!-- <img src="assets/img/Products/Products1.png" alt=""> -->
+                                                        <img ng-src="{{jewerly.link}}" class="img img-responsive img-box" on-error-src="assets/img/products/Products1.png" />
+                                                        <div class="products-boxes">
+                                                            <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
+                                                        </div>
+                                                        <figcaption class=" figure-boxx figure-section-hover">
+                                                            <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">{{jewerly.name}}</a></h4>
+                                                            <div class="star-box-section text-left">
+                                                                <p><i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <p>{{jewerly.price | currency}}$</p>
+                                                        </figcaption>
+                                                    </figure>
+                                                </div>
+                                                <div class="col-md-12" ng-hide="jewerlies.length<itemsPerPage">
+                                                    <div class="pagination-box text-right mar-top30">
+                                                        <a href="" ng-click="page=page-1" ng-hide="page===1"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+                                                        <a href="" ng-click="page=1"><span>Inicio</span></a>
+                                                        <a href=""><span>{{page}}</span></a>
+                                                        <a href="" ng-click="goToFinal(jewerlies, itemsPerPage)"><span>Fin</span></a>
+                                                        <a href="" ng-hide="jewerlies.length<=(page)*itemsPerPage" ng-click="page=page+1"><span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div id="productslist" class="products list box mar-top30">
+                                                <div class="col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <figure class="itg-hover-style2">
+                                                                <img src="assets/img/Products/Products1.png" alt="">
+                                                                <div class="products-boxes">
+                                                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                            <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section left text-left">
+                                                                    <p><i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                                <div class="per-box">
+                                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi
+                                                                        elit consequat ipsum, nec sagittis sem nibh id elit.
+                                                                        Duis sed odio sit amet.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <figure class="itg-hover-style2">
+                                                                <img src="assets/img/Products/Products2.png" alt="">
+                                                                <div class="products-boxes">
+                                                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                            <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section left text-left">
+                                                                    <p><i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                                <div class="per-box">
+                                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi
+                                                                        elit consequat ipsum, nec sagittis sem nibh id elit.
+                                                                        Duis sed odio sit amet.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <figure class="itg-hover-style2">
+                                                                <img src="assets/img/Products/Products3.png" alt="">
+                                                                <div class="products-boxes">
+                                                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                            <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section left text-left">
+                                                                    <p><i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                                <div class="per-box">
+                                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi
+                                                                        elit consequat ipsum, nec sagittis sem nibh id elit.
+                                                                        Duis sed odio sit amet.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <figure class="itg-hover-style2">
+                                                                <img src="assets/img/Products/Products4.png" alt="">
+                                                                <div class="products-boxes">
+                                                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                            <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section left text-left">
+                                                                    <p><i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                                <div class="per-box">
+                                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi
+                                                                        elit consequat ipsum, nec sagittis sem nibh id elit.
+                                                                        Duis sed odio sit amet.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <figure class="itg-hover-style2">
+                                                                <img src="assets/img/Products/Products5.png" alt="">
+                                                                <div class="products-boxes">
+                                                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                            <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section left text-left">
+                                                                    <p><i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                                <div class="per-box">
+                                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi
+                                                                        elit consequat ipsum, nec sagittis sem nibh id elit.
+                                                                        Duis sed odio sit amet.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12 col-sm-12 col-xs-12 mar-top30">
+                                                    <div class="row">
+                                                        <div class="col-md-4 col-sm-4 col-xs-12">
+                                                            <figure class="itg-hover-style2">
+                                                                <img src="assets/img/Products/Products6.png" alt="">
+                                                                <div class="products-boxes">
+                                                                    <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                </div>
+                                                            </figure>
+                                                        </div>
+                                                        <div class="col-md-8 col-sm-8 col-xs-12 box-list-page">
+                                                            <div class="pad-bottom10 figure-boxx figure-section-hover">
+                                                                <h4 class="theme-headdings text-left pad-top10"><a href="product-detail.html">High Designer Jewellery</a></h4>
+                                                                <div class="star-box-section left text-left">
+                                                                    <p><i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="fa fa-star"></i>
+                                                                        <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                    </p>
+                                                                </div>
+                                                                <p>100.00$</p>
+                                                                <div class="per-box">
+                                                                    <p>Aenean sollicitudin, lorem quis bibendum auctor, nisi
+                                                                        elit consequat ipsum, nec sagittis sem nibh id elit.
+                                                                        Duis sed odio sit amet.
+                                                                    </p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="clear"></div>
+                                                <div class="col-md-12 text-center">
+                                                    <div class="pagination-box text-right mar-top30">
+                                                        <a href="#"><span><i class="fa fa-angle-left" aria-hidden="true"></i></span></a>
+                                                        <a href="#"><span>1</span></a>
+                                                        <a href="#"><span>2</span></a>
+                                                        <a href="#"><span>3</span></a>
+                                                        <a href="#"><span>4</span></a>
+                                                        <a href="#"><span><i class="fa fa-angle-right" aria-hidden="true"></i></span></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3 col-sm-4 col-xs-12 siad-bar-sec ">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="search-box-1 mar-bottom40">
+                                                    <input type="text" name="search" ng-model="q.name" class="search_terms" placeholder="Search">
+                                                    <button class="button-style" type="submit" value=""><i class="fa fa-search" aria-hidden="true"></i></button>
+                                                </div>
+                                            </div>
+                                            <!--//==Categories Start==//-->
+                                            <div class="col-md-12">
+                                                <div class="Categories">
+                                                    <h4 class="theme-headdings">Filtros</h4>
+                                                    <div class="Categories-title-box pad-top30">
+                                                        <div class="faq-section">
+                                                            <div id="faq" class="marB30 ui-accordion ui-widget ui-helper-reset" role="tablist">
+                                                                <h3 class="ui-accordion-header ui-corner-top ui-state-default ui-accordion-icons ui-accordion-header-collapsed ui-corner-all"
+                                                                    role="tab" id="ui-id-1" aria-controls="ui-id-2" aria-selected="false"
+                                                                    aria-expanded="false" tabindex="-1">Categorías</h3>
+                                                                <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-2" aria-labelledby="ui-id-1"
+                                                                    role="tabpanel" aria-hidden="true" style="display: none; height:auto !important">
+                                                                    <div class="Categories">
+                                                                        <ul class="list boxss pad-top10">
+                                                                            <li ng-repeat="category in categories" ng-click="$parent.q.category = category.$id"><a ng-class="{'list-selected':$parent.q.category == category.$id}"
+                                                                                    href="">{{category.name}}</a></li>
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                                <h3 ng-show="moreOption" class="mar-top20 ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons"
+                                                                    role="tab" id="ui-id-5" aria-controls="ui-id-7" aria-selected="false"
+                                                                    aria-expanded="false" tabindex="-1">Size</h3>
+                                                                <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-6" aria-labelledby="ui-id-7"
+                                                                    role="tabpanel" aria-hidden="true" style="display: none; height: 231px;">
+                                                                    <div class="Categories">
+                                                                        <div class="col-md-12 row">
+                                                                            <div class="checbox-section mar-top10">
+                                                                                <div class="col-md-12 row">
+                                                                                    <div class="content">
+                                                                                        <div class="box">
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="d1" name="cb">
+                                                                                                <label for="d1">S</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="d2" name="cb">
+                                                                                                <label for="d2">L</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="d3" name="cb">
+                                                                                                <label for="d3">M</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="d4" name="cb">
+                                                                                                <label for="d4">XL</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="d5" name="cb">
+                                                                                                <label for="d5">XXL</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="d6" name="cb">
+                                                                                                <label for="d6">4XL</label>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <h3 ng-show="moreOption" class="mar-top20 ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons"
+                                                                    role="tab" id="ui-id-7" aria-controls="ui-id-6" aria-selected="false"
+                                                                    aria-expanded="false" tabindex="-1">Color</h3>
+                                                                <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-8" aria-labelledby="ui-id-8"
+                                                                    role="tabpanel" aria-hidden="true" style="display: none; height: 231px;">
+                                                                    <div class="Categories">
+                                                                        <div class="col-md-12 row">
+                                                                            <div class="checbox-section mar-top10">
+                                                                                <div class="col-md-12 row">
+                                                                                    <div class="content">
+                                                                                        <div class="box">
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="e1" name="cb">
+                                                                                                <label for="e1">Red</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="e2" name="cb">
+                                                                                                <label for="e2">Yellow</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="e3" name="cb">
+                                                                                                <label for="e3">Green</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="e4" name="cb">
+                                                                                                <label for="e4">Black</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="e5" name="cb">
+                                                                                                <label for="e5">Blue</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="e6" name="cb">
+                                                                                                <label for="e6">Gray</label>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <h3 ng-show="moreOption" class="mar-top20 ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons"
+                                                                    role="tab" id="ui-id-9" aria-controls="ui-id-9" aria-selected="false"
+                                                                    aria-expanded="false" tabindex="-1">Brand</h3>
+                                                                <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-10" aria-labelledby="ui-id-9"
+                                                                    role="tabpanel" aria-hidden="true" style="display: none; height: 231px;">
+                                                                    <div class="Categories">
+                                                                        <div class="col-md-12 row">
+                                                                            <div class="checbox-section mar-top10">
+                                                                                <div class="col-md-12 row">
+                                                                                    <div class="content">
+                                                                                        <div class="box">
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="f1" name="cb">
+                                                                                                <label for="f1">BlueStone</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="f2" name="cb">
+                                                                                                <label for="f2">PTM</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="f3" name="cb">
+                                                                                                <label for="f3">Clara</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="f4" name="cb">
+                                                                                                <label for="f4">Ziveg</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="f5" name="cb">
+                                                                                                <label for="f5">Clara</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="f6" name="cb">
+                                                                                                <label for="f6">Ziveg</label>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <h3 ng-show="moreOption" class="mar-top20 ui-accordion-header ui-corner-top ui-accordion-header-collapsed ui-corner-all ui-state-default ui-accordion-icons"
+                                                                    role="tab" id="ui-id-11" aria-controls="ui-id-10" aria-selected="false"
+                                                                    aria-expanded="false" tabindex="-1">Offers</h3>
+                                                                <div class="ui-accordion-content ui-corner-bottom ui-helper-reset ui-widget-content" id="ui-id-12" aria-labelledby="ui-id-10"
+                                                                    role="tabpanel" aria-hidden="true" style="display: none; height: 231px;">
+                                                                    <div class="Categories">
+                                                                        <div class="col-md-12 row">
+                                                                            <div class="checbox-section mar-top10">
+                                                                                <div class="col-md-12 row">
+                                                                                    <div class="content">
+                                                                                        <div class="box">
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="c1" name="cb">
+                                                                                                <label for="c1">No Cost EMI</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="c2" name="cb">
+                                                                                                <label for="c2">Special Price</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="c3" name="cb">
+                                                                                                <label for="c3">No Cost EMI</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="c4" name="cb">
+                                                                                                <label for="c4">Special Price</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="c5" name="cb">
+                                                                                                <label for="c5">No Cost EMI</label>
+                                                                                            </p>
+                                                                                            <p>
+                                                                                                <input type="checkbox" id="c6" name="cb">
+                                                                                                <label for="c6">Special Price</label>
+                                                                                            </p>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--//==Categories End==//-->
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div id="rangslider" class="price-filter-box pad-top30">
+                                                    <h4 class="theme-headdings mar-bottom30">Filtrar por precio</h4>
+                                                    <p>
+                                                    </p>
+                                                    <div id="slider-range"></div>
+                                                    <div class="price-box row mar-top30">
+                                                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                                            <a href="" class="itg-button">Filter</a>
+                                                        </div>
+                                                        <div class="col-md-6 col-sm-6 col-xs-6 price-text">
+                                                            <p><input type="text" id="amount" ng-model="priceTest" readonly
+                                                                    style="border:0; color:#000; font-weight:bold;"></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="col-md-12 pad-top30">
+                                                <h4 class="theme-headdings">Joyería Destacada</h4>
+                                                <div class="post pad-top20">
+                                                    <div class="row ">
+                                                        <div class="col-md-5 col-sm-5 col-xs-5 imd-box" ng-init="getDownloadURL(options[0].folder + '/' + jewerlyFeatured.id, jewerlyFeatured)">
+                                                            <img ng-src="{{jewerlyFeatured.link}}" class="img img-responsive img-box-featured" on-error-src="assets/img/products/Products1.png"
+                                                            />
+                                                        </div>
+                                                        <div class="col-md-7 col-sm-7 col-xs-7  post-section">
+                                                            <h4 class="theme-headdings"><a href="">{{jewerlyFeatured.name}}</a></h4>
+                                                            <div class="star-box-section rating-box text-left">
+                                                                <p><i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <div class="figure-boxx rsting pre">
+                                                                <p>{{jewerlyFeatured.price | currency}}$</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--  <div class="post pad-top20">
+                                                    <div class="row ">
+                                                        <div class="col-md-5 col-sm-5 col-xs-5 imd-box">
+                                                            <img src="assets/img/all/side-bar-img2.jpg" alt="">
+                                                        </div>
+                                                        <div class="col-md-7 col-sm-7 col-xs-7  post-section">
+                                                            <h4 class="theme-headdings"><a href="">Jewellery</a></h4>
+                                                            <div class="star-box-section rating-box text-left">
+                                                                <p><i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                </p>
+                                                            </div>
+                                                            <div class="figure-boxx rsting pre">
+                                                                <p>100.00$</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-12 rating-section">
+                                                            <a href="" class="itg-button mar-top20">MORE PRODUCTS</a>
+                                                        </div>
+                                                    </div>
+                                                </div> -->
+                                            </div>
+                                            <div class="col-md-12 pad-top40 collection-product-slider">
+                                                <div class="row">
+                                                    <div id="product-sidebar-slider" class="owl-carousel owl-theme">
+                                                        <div class="item">
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <figure class="itg-hover-style2">
+                                                                    <img src="assets/img/all/collection1.jpg" alt="">
+                                                                    <div class="products-boxes">
+                                                                        <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                    </div>
+                                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                                        <h4 class="theme-headdings text-center pad-top10"><a href="#">High Designer Jewellery</a></h4>
+                                                                        <div class="star-box-section text-left">
+                                                                            <p><i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                            </p>
+                                                                        </div>
+                                                                        <p>100.00$</p>
+                                                                    </figcaption>
+                                                                </figure>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <figure class="itg-hover-style2">
+                                                                    <img src="assets/img/all/collection1.jpg" alt="">
+                                                                    <div class="products-boxes">
+                                                                        <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                    </div>
+                                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                                        <h4 class="theme-headdings text-center pad-top10"><a href="#">High Designer Jewellery</a></h4>
+                                                                        <div class="star-box-section text-left">
+                                                                            <p><i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                            </p>
+                                                                        </div>
+                                                                        <p>100.00$</p>
+                                                                    </figcaption>
+                                                                </figure>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item">
+                                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                                <figure class="itg-hover-style2">
+                                                                    <img src="assets/img/all/collection1.jpg" alt="">
+                                                                    <div class="products-boxes">
+                                                                        <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Quick View</a>
+                                                                    </div>
+                                                                    <figcaption class=" figure-boxx figure-section-hover">
+                                                                        <h4 class="theme-headdings text-center pad-top10"><a href="#">High Designer Jewellery</a></h4>
+                                                                        <div class="star-box-section text-left">
+                                                                            <p><i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="fa fa-star"></i>
+                                                                                <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                            </p>
+                                                                        </div>
+                                                                        <p>100.00$</p>
+                                                                    </figcaption>
+                                                                </figure>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!--//==blog section End==//-->
+            </div>
+        </div>
+    </div>
+    <!--//===product-items-section End==//-->
+    <!--//===Start quick vive popap==//-->
+    <div class="quick-vive-popap">
+        <!--//================Quick view Start ==============//-->
+        <div class="container">
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog modal-lg">
+                    <div class="Quick-view-popup modal-content text-left">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="col-md-12 col-xs-12 popap-open-box">
+                            <div class="row">
+                                <div class="col-md-6 col-sm-6 col-xs-12">
+                                    <div class="row">
+                                        <div class="col-xs-12 marB30">
+                                            <figure>
+                                                <img src="assets/img/all/product-detail.png" alt="">
+                                            </figure>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-12 responsive-top">
+                                    <h3 class="theme-headdings text-left pad-top10 product-detail-title"><a href="#">High Designer Jewellery</a></h3>
+                                    <div class="star-box-section left product-det text-left pad-top15">
+                                        <ul>
+                                            <li>
+                                                <p> <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="fa fa-star"></i>
+                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                </p>
+                                            </li>
+                                            <li class="border-left-site">3 Review(s)</li>
+                                            <li class="border-left-site">Add a Review</li>
+                                        </ul>
+                                    </div>
+                                    <div class="clear"></div>
+                                    <div class="per-box texy-left mar-top15">
+                                        <p>Morbi mollis vestibulum sollicitudin. in eros a justo facilisis rutrum. Aenean id
+                                            ullamcorper libero.</p>
+                                    </div>
+                                    <div class="product-detail-btn  pad-top15">
+                                        <div class="form-row col-sm-5 col-xs-12 country-boxs billing-box select ">
+                                            <div class="row">
+                                                <p>
+                                                    <label for="billing_state">Material</label>
+                                                    <select class="billing_state2" id="billing_state" name="billing_state">
+                                                            <option value="">Select Color</option>
+                                                            <option value="AP">Red</option>
+                                                            <option value="AR">Blue</option>
+                                                            <option value="AS">Green</option>
+                                                            <option value="BR">Yellow</option>
+                                                            <option value="CT">Black</option>
+                                                        </select>
+                                                </p>
+                                            </div>
+                                        </div>
+                                        <div class="form-row col-sm-5 country-boxs billing-box select down ">
+                                            <div class="row ">
+                                                <p>
+                                                    <label for="billing_state">Size</label>
+                                                    <select class="billing_state" id="billing_state1" name="billing_state">
+                                                            <option value="">Select Size</option>
+                                                            <option value="AP">S</option>
+                                                            <option value="AR">L</option>
+                                                            <option value="AS">M</option>
+                                                            <option value="BR">XL</option>
+                                                            <option value="CT">XXL</option>
+                                                        </select>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 col-sm-7 row">
+                                        <div class="order-data box order-table text-center padTB15">
+                                            <div class="order-table-cell order-text product-input-type">
+                                                <input type="number" value="01" class="qty" name="qty1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7 col-sm-7 product-box-btm-blog row">
+                                        <a href="" class="itg-button mar-top15">Add To Cart</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--//================Quick view End ==============//-->
+    <!--//===footer-main-section Start==//-->
+    <footer>
+        <div class="footer-main-section">
+            <div class="special-style special-style-full special-style-semidark col-md-12 col-md-offset-0 pull-right">
+                <div class="bg-image" style="background-image:url('assets/img/all/footer-bg.jpg');"></div>
+            </div>
+            <div class="container">
+                <div class="row pad-top80 pad-bottom80">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <div class="footer-section1">
+                            <h4 class="footer-head-line">About us</h4>
+                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry Lorem Ipsum has been
+                                the industry.</p>
+                            <ul class="text-box">
+                                <li>
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
+                                    <span>hello@gmail.com</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-phone" aria-hidden="true"></i>
+                                    <span>P: 3333 222 1111</span>
+                                </li>
+                                <li>
+                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                    <span> 99 Barnard St States - GA 22222 </span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 responsive-top">
+                        <div class="footer-section2">
+                            <h4 class="footer-head-line">Information</h4>
+                            <ul class="footer-box2 pad-top15">
+                                <li><a href="#">About Us</a></li>
+                                <li><a href="#">Customer Service</a></li>
+                                <li><a href="#">Privacy Policy</a></li>
+                                <li><a href="#">Site Map</a></li>
+                                <li><a href="#">Advanced Search</a></li>
+                                <li><a href="#">Orders and Returns</a></li>
+                                <li><a href="#">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 responsive-top">
+                        <div class="footer-section2">
+                            <h4 class="footer-head-line">My Account</h4>
+                            <ul class="footer-box2 pad-top15">
+                                <li><a href="#">Sign In</a></li>
+                                <li><a href="#">View Cart</a></li>
+                                <li><a href="#">My Wishlist</a></li>
+                                <li><a href="#">Track My Order</a></li>
+                                <li><a href="#">Private Policy</a></li>
+                                <li><a href="#">Shipping & Returns</a></li>
+                                <li><a href="#">Help</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12 responsive-top">
+                        <div class="footer-section1">
+                            <h4 class="footer-head-line">Newsletter</h4>
+                            <p>Sign up for our mailing list to get latest updates and offers.</p>
+                            <div class="search-box-1 mar-bottom15">
+                                <input type="text" class="search_terms" name="search" placeholder="Email address">
+                                <button class="button-style" type="submit" value=""><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                            </div>
+                            <p>We respect your privacy</p>
+                            <div class="icons-section">
+                                <ul>
+                                    <li class="footer-icon-left"><a href="" class="mini-cart-icon"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                    <li><a href="" class="mini-cart-icon"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                    <li><a href="" class="mini-cart-icon"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+                                    <li><a href="" class="mini-cart-icon"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                                    <li><a href="" class="mini-cart-icon"><i class="fa fa-pinterest" aria-hidden="true"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom-bar pad-top-bottom25">
+                <p>Copyright © 2017 Responsive Theme - <span class="footer-text">Jewellry</span> and All Rights Reserved. Designed
+                    by <span class="footer-text"><a href="http://itgeeksin.com">ITGEEKS</a></span></p>
+            </div>
+        </div>
+    </footer>
+    <!-- <div id="style-switcher" style="left: 0px;">
+        <h2>Choose Color<a href="#"><i class="fa fa-cog fa-spin"></i></a></h2>
+        <div>
+            <ul class="colors" id="color1">
+                <li>
+                    <a href="#" class="color"></a>
+                </li>
+                <li>
+                    <a href="#" class="color1 active"></a>
+                </li>
+                <li>
+                    <a href="#" class="color2"></a>
+                </li>
+                <li>
+                    <a href="#" class="color3"></a>
+                </li>
+                <li>
+                    <a href="#" class="color4"></a>
+                </li>
+                <li>
+                    <a href="#" class="color5"></a>
+                </li>
+                <li>
+                    <a href="#" class="color6"></a>
+                </li>
+                <li>
+                    <a href="#" class="color7"></a>
+                </li>
+            </ul>
+        </div>
+    </div> -->
+    <!--//===footer-main-section End==//-->
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/plugin/owl-carousel-slider/js/owl.carousel.min.js"></script>
+    <script src="assets/plugin/menu-menu/js/hover-dropdown-menu.js"></script>
+    <script src="assets/plugin/fancyBox/js/jquery.fancybox.pack.js"></script>
+    <script src="assets/plugin/fancyBox/js/jquery.fancybox-media.js"></script>
+    <script src="assets/plugin/vertical-slider/js/jquery.bxslider.js"></script>
+    <script src="assets/plugin/acordian/js/jquery-ui.js"></script>
+    <script src="assets/plugin/menu-menu/js/jquery.hover-dropdown-menu-addon.js"></script>
+    <script src="assets/plugin/switcher/js/switcher.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="assets/js/main.js"></script>
+</body>
+
+</html>
