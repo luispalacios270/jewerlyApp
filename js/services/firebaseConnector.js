@@ -16,6 +16,7 @@ app.service('firebaseService', function ($firebaseObject, $firebaseArray, $fireb
                 document.link = url;
                 return url;
             }).catch(function (err) {
+                console.log(err);
                 document.link = "Error";
             });
         },

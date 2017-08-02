@@ -1,11 +1,21 @@
-var app = angular.module('jewerlyApp', ['ngRoute', 'firebase', 'ngAnimate'/* , 'slickCarousel' */]);
+var app = angular.module('jewerlyApp', ['ngRoute', 'firebase', 'ngAnimate' /* , 'slickCarousel' */]);
 app.directive('headerMenu', function () {
     return {
-        templateUrl: 'views/header/header.html'/* ,
-        conntroller: 'headerCtrl' */
+        templateUrl: 'views/header/header.html'
+        /* ,
+                conntroller: 'headerCtrl' */
     };
 });
 
+app.filter('range', function () {
+    return function (input, total) {
+        total = parseInt(total);
+        for (var i = 0; i < total; i++) {
+            input.push(i);
+        }
+        return input;
+    };
+});
 app.directive('onErrorSrc', function () {
     return {
         link: function (scope, element, attrs) {
@@ -17,6 +27,11 @@ app.directive('onErrorSrc', function () {
         }
     }
 });
+/* app.directie('popUp', function () {
+    return {
+        templateUrl:'views/popUp/popUp.html'
+    }
+}) */
 /* app.directive('fileInput', ['$parse', function ($parse) {
     return {
         restrict: 'A',
@@ -61,6 +76,10 @@ app.config(['$routeProvider', '$locationProvider',
                 templateUrl: 'views/collection/collection.html',
                 controller: 'collectionCtrl'
             })
+            .when('/cart', {
+                templateUrl: 'views/cart/cart.html',
+                controller: 'cartCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
@@ -68,8 +87,58 @@ app.config(['$routeProvider', '$locationProvider',
     }
 ]);
 
-app.controller("mainCtrl", function ($scope, $location, $rootScope) {
+app.controller("mainCtrl", function ($scope, $location, $rootScope, firebaseService) {
+    $scope.products = [];
+    $scope.total = 0;
+    $scope.options = [{
+        name: "Joyería",
+        folder: "jewerlyImages"
+    },
+    {
+        name: "Categorías",
+        folder: "categoriesImages"
+    },
+    {
+        name: "Slider",
+        folder: "slidersImages"
+    }
+    ];
+
+    $scope.getDownloadURL = function (nodeName, document) {
+        return firebaseService.getDownload(nodeName, document);
+    };
+
+    $scope.getTotal = function () {
+        if ($scope.products.length > 0) {
+            let total = 0;
+            for (var i = 0; i < $scope.products.length; i++) {
+                var element = $scope.products[i];
+                total += element.price * element.quantity;
+            }
+            return total;
+        } else
+            return 0;
+
+    }
+
+    /*  $scope.$watch("products", function (newVal, old, scope) {
+         if (newVal.length != old.length && newVal.length > 0)
+             $scope.total += newVal[newVal.length - 1].price * newVal[newVal.length - 1].quantity;
+     });
+     $scope.getTotal = function (list) {
+         if (list.length > 0) {
+             let total;
+             list.forEach(function (element, index) {
+                 total += element.price * element.quantity;
+                 if ((index + 1) >= list.length)
+                     return total;
+             });
+         } else
+             return 0;
+
+     } */
     $rootScope.$on("$locationChangeSuccess", function () {
+
         if ($location.url() === '/dashboard')
             $scope.hideHeader = true;
         else
@@ -81,6 +150,7 @@ app.controller("mainCtrl", function ($scope, $location, $rootScope) {
     angular.element(document).ready(function () {
         animations();
     });
+
     function animations() {
 
         "use strict";

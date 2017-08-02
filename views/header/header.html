@@ -1,3 +1,4 @@
+<link href="style.css" rel="stylesheet">
 <div>
     <header>
         <!--//==preloader Start==//-->
@@ -9,7 +10,7 @@
                 <div class="c4"></div>
             </div>
             <h3>Loading</h3>
-        </div> -->
+        </div>  -->
         <!--//==preloader End==//-->
         <!--//==top bar start==//-->
         <!-- <div class="top-bar-section1">
@@ -35,9 +36,9 @@
                             </div>
                             <div class="col-md-6 col-sm-6 col-xs-12">
                                 <div class="select-box">
-                                    <div class="language-box2 top ">
+                                    <!-- <div class="language-box2 top ">
                                         <p><a href=""><i class="fa fa-heart" aria-hidden="true"></i>Mi lista de deseos</a></p>
-                                    </div>
+                                    </div> -->
                                     <!-- <div class="language-box2 ">
                                         <select>
                                                 <option value="volvo">USD</option>
@@ -81,36 +82,24 @@
                                             <li class="hidden-sm hidden-md hidden-lg hover-mini-cart">
                                                 <a href="" class="mini-cart-icon"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a>
                                                 <div class="mini-card-section">
-                                                    <div class="mini-cart-product-box pad-top20">
+                                                    <div class="mini-cart-product-box pad-top20" ng-repeat="product in products">
                                                         <div class="cart-img-box">
-                                                            <figure>
-                                                                <img src="assets/img/all/mini-cart-img1.jpg" alt="">
+                                                            <figure ng-init="getDownloadURL(options[0].folder + '/' + product.$id, product)">
+                                                                <img ng-src="{{product.link}}" class="img img-responsive img-box-featured" on-error-src="assets/img/products/Products1.png"
+                                                                />>
                                                             </figure>
                                                         </div>
                                                         <div class="cart-price-box">
-                                                            <h5><a href="product-detail.html">Designer Jewellery</a></h5>
-                                                            <p>$100x1</p>
+                                                            <h5><a href="product-detail.html">{{product.name}}</a></h5>
+                                                            <p>{{product.price | currency}}x{{product.quantity}}</p>
                                                         </div>
                                                         <div class="cancle-box">
-                                                            <a href="">x</a>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mini-cart-product-box pad-top20">
-                                                        <div class="cart-img-box">
-                                                            <figure>
-                                                                <img src="assets/img/all/mini-cart-img1.jpg" alt="">
-                                                            </figure>
-                                                        </div>
-                                                        <div class="cart-price-box">
-                                                            <h5><a href="product-detail.html">Designer Jewellery</a></h5>
-                                                            <p>$100x1</p>
-                                                        </div>
-                                                        <div class="cancle-box">
-                                                            <a href="">x</a>
+                                                            <a href="" ng-click="products.splice($index,1)">x</a>
                                                         </div>
                                                     </div>
                                                     <div class="price-text-sec pull-right pad-top10">
-                                                        <p>Total $200
+                                                        <p>Total
+                                                            <!-- {{getTotal(products)}} -->{{getTotal() | currency}}
                                                             <p>
                                                     </div>
                                                     <div class="clear"></div>
@@ -131,30 +120,30 @@
                                     <!-- nav -->
                                     <ul class="nav navbar-nav">
                                         <li>
-                                            <a href="">Inicio</a>
+                                            <a href="#">Inicio</a>
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <a href="">Localizador de tiendas</a>
-                                            <ul class="dropdown-menu">
+                                             <ul class="dropdown-menu">
                                                 <li><a href="account.html">Account</a></li>
                                                 <li><a href="coming-soon.html">Comming Soon</a></li>
                                                 <li><a href="404-page.html">404 Error</a></li>
-                                            </ul>
-                                        </li>
+                                            </ul> 
+                                        </li> -->
                                         <li>
-                                            <a href="">Colecciones</a>
-                                            <ul class="dropdown-menu">
+                                            <a href="#/collection">Colecciones</a>
+                                            <!-- <ul class="dropdown-menu">
                                                 <li><a href="collection-fullwidth.html">Collection Full</a></li>
                                                 <li><a href="">Collection Sidebar</a></li>
                                                 <li><a href="cart.html">Cart</a></li>
                                                 <li><a href="checkout.html">Checkout</a></li>
                                                 <li><a href="order.html">Order</a></li>
                                                 <li><a href="product-detail.html">Product Detail</a></li>
-                                            </ul>
+                                            </ul> -->
                                         </li>
-                                        <li>
+                                        <!-- <li>
                                             <a href="">Consejos Útiles</a>
-                                            <ul class="dropdown-menu">
+                                             <ul class="dropdown-menu">
                                                 <li><a href="blog-grid-style1.html">Blogs Style 1</a></li>
                                                 <li><a href="blog-grid-style2.html">Blogs Style 2</a></li>
                                                 <li><a href="blog-list-sidebar.html">Blog List With Sidebar</a></li>
@@ -165,8 +154,8 @@
                                                         <li><a href="blog-detail-no-sidebar.html">Without Sidebar</a></li>
                                                     </ul>
                                                 </li>
-                                            </ul>
-                                        </li>
+                                            </ul> 
+                                        </li> -->
                                         <!-- <li>
                                             <a href="faq-with-sidebar.html">
                                                 Faqs 
@@ -184,59 +173,49 @@
                             <div class="col-md-4 col-sm-4 col-xs-9 hidden-xs">
                                 <div class="icons-section pad-top20 pull-right">
                                     <ul>
-                                        <li class="search-box1 hidden-xs">
+                                        <!-- <li class="search-box1 hidden-xs">
                                             <input class="search" type="search" placeholder="Search" />
                                             <div class="icon"><a href="" class="mini-cart-icon"><i class="fa fa-search" aria-hidden="true"></i></a></div>
-                                        </li>
+                                        </li> -->
                                         <li class="hidden-xs login-box-man">
-                                            <a href="" class="mini-cart-icon"><i class="fa fa-user " aria-hidden="true"></i></a>
-                                            <div class="login-section">
+                                            <a href="#/dashboard" class="mini-cart-icon"><i class="fa fa-user " aria-hidden="true"></i></a>
+                                            <!-- <div class="login-section">
                                                 <ul class="pad-10">
-                                                    <li><a href="">My Wishlist</a></li>
-                                                    <!-- <li><a href="">Sign In</a></li>
-                                                    <li><a href="">Create Account</a></li> -->
+                                                      <li><a href="">My Wishlist</a></li> 
+                                                     <li><a href="">Sign In</a></li>
+                                                    <li><a href="">Create Account</a></li>  
                                                 </ul>
-                                            </div>
+                                            </div> -->
                                         </li>
                                         <li class="hidden-xs hover-mini-cart">
                                             <a href="" class="mini-cart-icon"><i class=" fa fa-shopping-cart" aria-hidden="true"></i></a>
                                             <div class="mini-card-section">
-                                                <div class="mini-cart-product-box pad-top20">
+                                                <div class="mini-cart-product-box pad-top20" ng-repeat="product in products track by $index">
                                                     <div class="cart-img-box">
-                                                        <figure>
-                                                            <img src="assets/img/all/mini-cart-img1.jpg" alt="">
+                                                        <figure ng-init="getDownloadURL(options[0].folder + '/' + product.$id, product)">
+                                                            <img ng-src="{{product.link}}" class="img img-responsive img-box-featured" on-error-src="assets/img/products/Products1.png"
+                                                            />
                                                         </figure>
                                                     </div>
                                                     <div class="cart-price-box">
-                                                        <h5><a href="product-detail.html">Designer Jewellery</a></h5>
-                                                        <p>$100x1</p>
+                                                        <h5><a href="product-detail.html">{{product.name}}</a></h5>
+                                                        <p>{{product.price | currency}}x{{product.quantity}}</p>
                                                     </div>
                                                     <div class="cancle-box">
-                                                        <a href="">x</a>
+                                                        <a href="" ng-click="products.splice($index,1)">x</a>
                                                     </div>
                                                 </div>
-                                                <div class="mini-cart-product-box pad-top20">
-                                                    <div class="cart-img-box">
-                                                        <figure>
-                                                            <img src="assets/img/all/mini-cart-img1.jpg" alt="">
-                                                        </figure>
-                                                    </div>
-                                                    <div class="cart-price-box">
-                                                        <h5><a href="product-detail.html">Designer Jewellery</a></h5>
-                                                        <p>$100x1</p>
-                                                    </div>
-                                                    <div class="cancle-box">
-                                                        <a href="">x</a>
-                                                    </div>
-                                                </div>
+
                                                 <div class="price-text-sec pull-right pad-top10">
-                                                    <p>Total $200
+                                                    <p>
+                                                        Total
+                                                        <!-- {{getTotal(products)}} -->{{getTotal() | currency}}
                                                         <p>
                                                 </div>
                                                 <div class="clear"></div>
                                                 <div class="price-button-box pad-top10 pad-bottom20 pull-right">
-                                                    <a href="cart.html" class="itg-button">View cart</a>
-                                                    <a href="checkout.html" class="itg-button pull-right ">Checkout</a>
+                                                    <a href="#/cart" class="itg-button">Ver Carrito</a>
+                                                    <!-- <a href="checkout.html" class="itg-button pull-right ">Checkout</a> -->
                                                 </div>
                                             </div>
                                         </li>

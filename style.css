@@ -3,50 +3,99 @@
     text-align: center;
 }
 
-.list-selected{
+.list-selected {
     color: #f97242 !important;
 }
 
-.parent{
+.p-text{
+    overflow: overlay;
+    height: 90px;
+}
+
+.info-added-text{
+    margin-top: 25px;
+    color: #f97242;
+    font-weight: 700;
+}
+
+.star-repeat{
+    margin-right: 4px !important;
+}
+
+.img-carousel {
+    object-fit: cover;
+    max-height: 500px;
+}
+
+.parent {
     position: relative;
 }
 
-.custom-slider{
+.img-box-modal {
+    min-height: 300px;
+    height: 100%;
+    width: 100%;
+    object-fit: scale-down;
+}
+
+.fade-animation {
+    transition: 0.2s linear all;
+}
+
+.fade-animation.ng-hide {
+    opacity: 0;
+}
+
+.fade-animation.ng-enter {
+    opacity: 0;
+}
+
+.fade-animation.ng-enter.ng-enter-active {
+    opacity: 1;
+}
+
+.custom-slider {
     background: transparent;
     position: absolute;
     top: 0%;
-    border: 0;    
+    border: 0;
     height: 100%;
     width: 25px;
     font-size: 1.5em;
 }
 
-.custom-slider-left{
+.custom-slider-left {
     left: 19px;
 }
 
-.custom-slider-right{
+.custom-slider-right {
     right: 19px;
 }
 
-.img-box{
-    height: 160px;
+.img-box {
+    height: 150px;
     width: 100%;
-    object-fit: scale-down;
+    object-fit: cover;
 }
 
-.img-box-featured{
+/* .img-header {
+    height: 150px;
+    width: 100%;
+    object-fit: scale-down;
+} */
+
+.img-box-featured {
     height: 70px;
     width: 100%;
     object-fit: scale-down;
 }
 
-.info-banner{
+.info-banner {
     text-align: left !important;
     font-size: 0.85em !important;
 }
 
-.logo-img{
+.logo-img {
     max-height: 60px
 }
 

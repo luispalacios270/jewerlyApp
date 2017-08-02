@@ -1,18 +1,28 @@
 app.controller('dashboardCtrl', function ($scope, firebaseService, $interval) {
-    $scope.options = [
-        {
-            name: "Joyería",
-            folder: "jewerlyImages"
-        },
-        {
-            name: "Categorías",
-            folder: "categoriesImages"
-        },
-        {
-            name: "Slider",
-            folder: "slidersImages"
-        }
+    $scope.options = [{
+        name: "Joyería",
+        folder: "jewerlyImages"
+    },
+    {
+        name: "Categorías",
+        folder: "categoriesImages"
+    },
+    {
+        name: "Slider",
+        folder: "slidersImages"
+    }
     ];
+
+    $scope.makeFeatured = function (jewerly) {
+        $scope.jewerlyFeatured.id = jewerly.$id;
+        $scope.jewerlyFeatured.inStock = jewerly.inStock;
+        $scope.jewerlyFeatured.name = jewerly.name;
+        $scope.jewerlyFeatured.price = jewerly.price;
+        $scope.jewerlyFeatured.qualification = jewerly.qualification;
+        $scope.jewerlyFeatured.$save();
+    }
+
+
     $scope.page = 0;
     $scope.categories = firebaseService.getNodeArray("categories");
     $scope.jewerlies = firebaseService.getNodeArray("jewerly");
@@ -41,8 +51,7 @@ app.controller('dashboardCtrl', function ($scope, firebaseService, $interval) {
                     $scope.error = "El email ingresado no es valido, por favor ingrese un email válido"
                 } else if (errorCode === "auth/user-not-found") {
                     $scope.error = "El correo ingresado no esta registrado"
-                }
-                else {
+                } else {
                     $scope.error = errorMessage;
                 }
                 console.log(error);
@@ -50,10 +59,10 @@ app.controller('dashboardCtrl', function ($scope, firebaseService, $interval) {
             });
     }
 
-    $scope.isTop = function (document) {
+    /* $scope.isTop = function (document) {
 
 
-    }
+    } */
 
     $scope.showCategory = function (document) {
         var id = document.category;
@@ -66,6 +75,10 @@ app.controller('dashboardCtrl', function ($scope, firebaseService, $interval) {
             });
         } else
             return;
+    }
+
+    $scope.prepDelete = function (document) {
+        $scope.objectToRemove = document;
     }
 
     $scope.isInList = function (document, arrayTmp) {
@@ -160,12 +173,16 @@ app.controller('dashboardCtrl', function ($scope, firebaseService, $interval) {
         if (document.$id && document.$id != '') {
             arrayDocument.$save(document).then(function (ref) {
                 let id = ref.key;
+                if (id === $scope.jewerlyFeatured.id) {
+                    $scope.makeFeatured(document);
+                }
                 if ($scope.files && $scope.files.length > 0) {
                     var uploadTask = firebaseService.uploadFile($scope.options[index].folder + "/" + id, $scope.files[0]);
                     uploadTask.$complete(function () {
-                        // $(".alert").show('slow');
+                        $scope.files = [];
                     });
                     uploadTask.$error(function (err) {
+                        $scope.files = [];
                         console.log(err);
                     });
                 }
@@ -173,19 +190,17 @@ app.controller('dashboardCtrl', function ($scope, firebaseService, $interval) {
             }, function (err) {
                 console.log(err);
             });
-            /* $scope.jewerly = {};
-            $scope.category = {};
-            $scope.slider = {}; */
-        }
-        else {
+        } else {
             arrayDocument.$add(document).then(function (ref) {
                 let id = ref.key;
                 if ($scope.files && $scope.files.length > 0) {
                     var uploadTask = firebaseService.uploadFile($scope.options[index].folder + "/" + id, $scope.files[0]);
                     uploadTask.$complete(function () {
+                        $scope.files = [];
                         // $(".alert").show('slow');
                     });
                     uploadTask.$error(function (err) {
+                        $scope.files = [];
                         console.log(err);
                     });
                 }

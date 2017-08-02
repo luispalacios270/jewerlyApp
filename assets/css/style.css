@@ -1924,11 +1924,13 @@ ul.breadcrumb li {
     width: 100%;
 }
 .pagination-box span {
-    width: 35px;
+      /* width: 35px;   */
     height: 35px;
     display: inline-block;
     text-align: center;
     padding-top: 3px;
+    padding-left: 10px;
+    padding-right: 10px;
     margin: 0 5px;
     background-color: #eee;
     -webkit-transition: all .45s ease-in-out;

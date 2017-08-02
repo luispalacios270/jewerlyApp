@@ -56,8 +56,12 @@
 						<div class="row" ng-if="error && error !=''">
 							<p class="col-xs-12 text-center">{{error}}</p>
 						</div>
-						<button type="submit" ng-disabled="!user || !user.email || !user.pass" class="btn btn-primary pull-right">Iniciar Sesión</button>
-						<div class="clearfix"></div>
+
+						<div class="row">
+							<!-- <a href="#" class="file-uploader-btn">Volver</a> -->
+							<button type="submit" ng-disabled="!user || !user.email || !user.pass" class="btn btn-primary pull-right">Iniciar Sesión</button>
+							<div class="clearfix"></div>
+						</div>
 					</form>
 
 				</div>
@@ -78,7 +82,7 @@
 		<div class="wrapper" ng-cloak>
 			<div class="sidebar" data-color="purple" data-image="dashboard/assets/img/sidebar-1.jpg">
 				<div class="logo">
-					<a href="" class="simple-text">
+					<a href="#" class="simple-text">
 					Gaura
 				</a>
 				</div>
@@ -120,6 +124,8 @@
 									<input type="text" class="form-control" ng-model="q" placeholder="Search">
 									<span class="material-input"></span>
 								</div>
+
+
 								<button type="submit" class="btn btn-white btn-round btn-just-icon">
 								<i class="material-icons">search</i><div class="ripple-container"></div>
 							</button>
@@ -129,7 +135,7 @@
 				</nav>
 				<div class="content">
 					<div class="container-fluid">
-						<div id="list-items" ng-show="selectedOption!=-1 && showList">
+						<div id="list-items" ng-if="selectedOption!=-1 && showList">
 							<div class="row">
 								<ul>
 									<li ng-repeat="document in auxList | limitTo:5:(page*5)| filter:q as results">
@@ -157,6 +163,9 @@
 														<p ng-if="document.inStock" class="text-center info-card">
 															<span class="title-info"> ¿Se encuentra en stock?: </span> {{document.inStock}}
 														</p>
+														<p ng-if="document.qualification" class="text-center info-card" ng-init="">
+															<span class="title-info"> Calificación: </span> {{document.qualification}}
+														</p>
 														<p ng-if="document.price" class="text-center info-card">
 															<span class="title-info"> Precio: </span> {{document.price}}
 														</p>
@@ -170,11 +179,11 @@
 														<i class="material-icons box-effect edit-btn" ng-click="editDocuemnt(document)" title="Editar información">edit</i>
 													</div>
 													<div class="col-xs-6 text-center">
-														<i class="material-icons box-effect" title="Establecer como joya importante" ng-click="" ng-class="{'active-jewerly':document.isFeatured}"
-														 ng-init="isInList(document,$parent.jewerliesTop)" ng-if="selectedOption===0">star_rate</i>
+														<i class="material-icons box-effect" style="width:24px; cursor:pointer" ng-click="makeFeatured(document)" title="Establecer como joya importante"
+														    ng-click="" ng-class="{'active-jewerly':document.$id == jewerlyFeatured.id}" ng-if="selectedOption===0">star_rate</i>
 													</div>
 													<div class="col-xs-3 text-right">
-														<i class="material-icons close-btn box-effect" title="Eliminar" data-toggle="modal" data-target="#myModal" ng-click="$parent.objectToRemove = document">close</i>
+														<i class="material-icons close-btn box-effect" title="Eliminar" data-toggle="modal" data-target="#myModal" ng-click="prepDelete(document)">close</i>
 													</div>
 												</div>
 											</div>
@@ -286,6 +295,21 @@
 											<div class="row">
 												<div class="col-md-12">
 													<div class="form-group ">
+														<label class="control-label">Calificación</label>
+														<select ng-model="jewerly.qualification" name="" id="">
+														<option ng-value="1">1</option>
+														<option ng-value="2">2</option>
+														<option ng-value="3">3</option>
+														<option ng-value="4">4</option>
+														<option ng-value="5" selected>5</option>
+													</select>
+													</div>
+												</div>
+											</div>
+
+											<div class="row">
+												<div class="col-md-12">
+													<div class="form-group ">
 														<label class="control-label">Categoría</label>
 														<select ng-model="jewerly.category" name="" id="">
 														<option  ng-repeat="category in categories" ng-value="category.$id">{{category.name}}</option>														
@@ -390,7 +414,6 @@
 						<button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="auxList.$remove(objectToRemove)">Eliminar</button>
 					</div>
 				</div>
-
 			</div>
 		</div>
 	</div>

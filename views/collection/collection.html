@@ -75,19 +75,19 @@
                                                     <div class="page-tool-box padT5">
                                                         <div class="row">
                                                             <div class="col-md-6 col-sm-12 col-xs-12 marB10 padT5">
-                                                                <a class="viewGrid"><i class="fa fa-th" aria-hidden="true"></i></a>
-                                                                <a class="viewList"><i class="fa fa-th-list" aria-hidden="true"></i></a>
-                                                                <span>Artículo 1 a 15 de 15 articulos</span>
+                                                                <!--     <a class="viewGrid"><i class="fa fa-th" aria-hidden="true"></i></a>
+                                                                <a class="viewList"><i class="fa fa-th-list" aria-hidden="true"></i></a> -->
+                                                                <!-- <span>Artículo 1 a 15 de 15 articulos</span> -->
                                                             </div>
                                                             <div class="col-md-5 col-sm-8 col-xs-12 billing-box select sow-page-secton responsive-top1 box ">
                                                                 <span>Ver </span>
-                                                                <select ng-model="itemsPerPage">
+                                                                <select ng-model="itemsPerPage" ng-change="page=1">
                                                                     <option ng-value="1">1</option>
                                                                     <option ng-value="2">2</option>
                                                                     <option ng-value="3">3</option>
-                                                                    <option ng-value="4" >4</option>
-                                                                    <option ng-value="5" >5</option>
-                                                                    <option ng-value="6" >6</option>
+                                                                    <option ng-value="4">4</option>
+                                                                    <option ng-value="5">5</option>
+                                                                    <option ng-value="6">6</option>
                                                                     <option ng-value="7">7</option>
                                                                     <option ng-value="8">8</option>
                                                                     <option ng-value="9">9</option>
@@ -100,7 +100,7 @@
                                                 </div>
                                                 <div class="col-md-4 col-sm-4 col-xs-12 marB10 padT5 responsive-top1 tool-bar-boxs">
                                                     <div class="page-tool-box page-tool-box-right billing-box select sow-page-secton drop-box-sec boxx">
-                                                        <span>Sort by </span>
+                                                        <span>Ordenar Por: </span>
                                                         <select ng-model="orderOption">
                                                                 <option value="">Ninguno</option>
                                                                 <option value="name">Nombre</option>
@@ -112,19 +112,15 @@
                                             <div id="productsgriads" class="products mar-top30">
                                                 <div class="col-md-4 col-sm-6 col-xs-12 pad-top30" ng-repeat="jewerly in jewerlies|filter:q|orderBy:orderOption|limitTo:itemsPerPage:(page-1)*itemsPerPage">
                                                     <figure class="itg-hover-style2" ng-init="getDownloadURL($parent.options[0].folder + '/' + jewerly.$id, jewerly)">
-                                                        <!-- <img src="assets/img/Products/Products1.png" alt=""> -->
                                                         <img ng-src="{{jewerly.link}}" class="img img-responsive img-box" on-error-src="assets/img/products/Products1.png" />
                                                         <div class="products-boxes">
-                                                            <a data-toggle="modal" data-target="#myModal" href="" class="itg-button">Revisar</a>
+                                                            <a data-toggle="modal" ng-click="$parent.selectedJewerly=jewerly" data-target="#myModal" href="" class="itg-button">Revisar</a>
                                                         </div>
                                                         <figcaption class=" figure-boxx figure-section-hover">
                                                             <h4 class="theme-headdings text-center pad-top10"><a href="product-detail.html">{{jewerly.name}}</a></h4>
                                                             <div class="star-box-section text-left">
-                                                                <p><i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                <p>
+                                                                    <i class="fa star-repeat fa-star" ng-repeat="star in [] | range:jewerly.qualification"></i>
                                                                 </p>
                                                             </div>
                                                             <p>{{jewerly.price | currency}}$</p>
@@ -142,7 +138,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="row">
+                                        <!-- <div class="row">
                                             <div id="productslist" class="products list box mar-top30">
                                                 <div class="col-md-12 col-sm-12 col-xs-12">
                                                     <div class="row">
@@ -348,13 +344,18 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
+
+                                        
+
+
+
                                     </div>
                                     <div class="col-md-3 col-sm-4 col-xs-12 siad-bar-sec ">
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="search-box-1 mar-bottom40">
-                                                    <input type="text" name="search" ng-model="q.name" class="search_terms" placeholder="Search">
+                                                    <input type="text" name="search" ng-model="q.name" ng-change="page=1" class="search_terms" placeholder="Realizar Busqueda">
                                                     <button class="button-style" type="submit" value=""><i class="fa fa-search" aria-hidden="true"></i></button>
                                                 </div>
                                             </div>
@@ -372,7 +373,7 @@
                                                                     role="tabpanel" aria-hidden="true" style="display: none; height:auto !important">
                                                                     <div class="Categories">
                                                                         <ul class="list boxss pad-top10">
-                                                                            <li ng-repeat="category in categories" ng-click="$parent.q.category = category.$id"><a ng-class="{'list-selected':$parent.q.category == category.$id}"
+                                                                            <li ng-repeat="category in categories" ng-click="$parent.q.category = category.$id; $parent.page=1"><a ng-class="{'list-selected':$parent.q.category == category.$id}"
                                                                                     href="">{{category.name}}</a></li>
                                                                         </ul>
                                                                     </div>
@@ -551,7 +552,7 @@
                                                 </div>
                                             </div>
                                             <!--//==Categories End==//-->
-                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                            <!-- <div class="col-md-12 col-sm-12 col-xs-12">
                                                 <div id="rangslider" class="price-filter-box pad-top30">
                                                     <h4 class="theme-headdings mar-bottom30">Filtrar por precio</h4>
                                                     <p>
@@ -567,28 +568,27 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                             <div class="clear"></div>
                                             <div class="col-md-12 pad-top30">
                                                 <h4 class="theme-headdings">Joyería Destacada</h4>
                                                 <div class="post pad-top20">
                                                     <div class="row ">
-                                                        <div class="col-md-5 col-sm-5 col-xs-5 imd-box" ng-init="getDownloadURL(options[0].folder + '/' + jewerlyFeatured.id, jewerlyFeatured)">
-                                                            <img ng-src="{{jewerlyFeatured.link}}" class="img img-responsive img-box-featured" on-error-src="assets/img/products/Products1.png"
+                                                        <div class="col-md-5 col-sm-5 col-xs-5 imd-box">
+                                                            <img firebase-src="{{options[0].folder + '/' + jewerlyFeatured.id}}" class="img img-responsive img-box-featured" on-error-src="assets/img/products/Products1.png"
                                                             />
                                                         </div>
                                                         <div class="col-md-7 col-sm-7 col-xs-7  post-section">
                                                             <h4 class="theme-headdings"><a href="">{{jewerlyFeatured.name}}</a></h4>
                                                             <div class="star-box-section rating-box text-left">
-                                                                <p><i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="fa fa-star"></i>
-                                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                                <p>
+                                                                    <!-- <a data-toggle="modal" ng-click="$parent.selectedJewerly=jewerly" data-target="#myModal" href="" class="itg-button">Revisar</a> -->
+                                                                    <i class="fa star-repeat fa-star" ng-repeat="star in [] | range:jewerlyFeatured.qualification"></i>
+
                                                                 </p>
                                                             </div>
                                                             <div class="figure-boxx rsting pre">
-                                                                <p>{{jewerlyFeatured.price | currency}}$</p>
+                                                                <p>{{jewerlyFeatured.price | currency}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -620,7 +620,7 @@
                                                     </div>
                                                 </div> -->
                                             </div>
-                                            <div class="col-md-12 pad-top40 collection-product-slider">
+                                            <!--   <div class="col-md-12 pad-top40 collection-product-slider">
                                                 <div class="row">
                                                     <div id="product-sidebar-slider" class="owl-carousel owl-theme">
                                                         <div class="item">
@@ -691,7 +691,7 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
                                 </div>
@@ -712,41 +712,38 @@
                 <div class="modal-dialog modal-lg">
                     <div class="Quick-view-popup modal-content text-left">
                         <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <button type="button" class="close" ng-click="selectedJewerly=null" data-dismiss="modal">&times;</button>
                         </div>
                         <div class="col-md-12 col-xs-12 popap-open-box">
                             <div class="row">
                                 <div class="col-md-6 col-sm-6 col-xs-12">
                                     <div class="row">
                                         <div class="col-xs-12 marB30">
-                                            <figure>
-                                                <img src="assets/img/all/product-detail.png" alt="">
+                                            <figure ng-init="getDownloadURL(options[0].folder + '/' + selectedJewerly.$id, selectedJewerly)" ng-if="selectedJewerly">
+                                                <img ng-src="{{selectedJewerly.link}}" class="img img-responsive img-box-modal" on-error-src="assets/img/products/Products1.png"
+                                                />
                                             </figure>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-12 responsive-top">
-                                    <h3 class="theme-headdings text-left pad-top10 product-detail-title"><a href="#">High Designer Jewellery</a></h3>
+                                    <h3 class="theme-headdings text-left pad-top10 product-detail-title"><a href="">{{selectedJewerly.name}}</a></h3>
                                     <div class="star-box-section left product-det text-left pad-top15">
                                         <ul>
                                             <li>
-                                                <p> <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="star-code fa fa-star-half-o" aria-hidden="true"></i>
+                                                <p>
+                                                    <i class="fa fa-star star-repeat" ng-repeat="star in [] | range:selectedJewerly.qualification"></i>
                                                 </p>
                                             </li>
-                                            <li class="border-left-site">3 Review(s)</li>
-                                            <li class="border-left-site">Add a Review</li>
+                                            <li class="border-left-site">{{selectedJewerly.price | currency }}</li>
+                                            <!-- <li class="border-left-site">Add a Review</li>  -->
                                         </ul>
                                     </div>
                                     <div class="clear"></div>
                                     <div class="per-box texy-left mar-top15">
-                                        <p>Morbi mollis vestibulum sollicitudin. in eros a justo facilisis rutrum. Aenean id
-                                            ullamcorper libero.</p>
+                                        <p class="p-text">{{selectedJewerly.description}}</p>
                                     </div>
-                                    <div class="product-detail-btn  pad-top15">
+                                    <!-- <div class="product-detail-btn  pad-top15">
                                         <div class="form-row col-sm-5 col-xs-12 country-boxs billing-box select ">
                                             <div class="row">
                                                 <p>
@@ -777,16 +774,19 @@
                                                 </p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <div class="col-md-6 col-sm-7 row">
                                         <div class="order-data box order-table text-center padTB15">
                                             <div class="order-table-cell order-text product-input-type">
-                                                <input type="number" value="01" class="qty" name="qty1">
+                                                <input type="number" ng-model="quantityProduct" value="01" min="1" class="qty" name="qty1">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-md-7 col-sm-7 product-box-btm-blog row">
-                                        <a href="" class="itg-button mar-top15">Add To Cart</a>
+                                        <a href="" ng-click="addProductToCart(selectedJewerly, quantityProduct);" class="itg-button mar-top15">Agregar a carrito</a>
+                                    </div>
+                                    <div class="row">
+                                        <p class="col-xs-12 text-center info-added-text fade-animation" ng-if="isAdded">Producto agregado</p>
                                     </div>
                                 </div>
                             </div>
@@ -876,10 +876,10 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom-bar pad-top-bottom25">
+            <!-- <div class="footer-bottom-bar pad-top-bottom25">
                 <p>Copyright © 2017 Responsive Theme - <span class="footer-text">Jewellry</span> and All Rights Reserved. Designed
                     by <span class="footer-text"><a href="http://itgeeksin.com">ITGEEKS</a></span></p>
-            </div>
+            </div> -->
         </div>
     </footer>
     <!-- <div id="style-switcher" style="left: 0px;">
